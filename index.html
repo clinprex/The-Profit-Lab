@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="The Profit Lab — free trading education, videos, guides and tools.">
+  <title>The Profit Lab — Free Trading Education</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <header class="nav">
+    <a class="brand" href="#"><span class="brand-mark">PL</span><span>The Profit Lab</span></a>
+    <nav>
+      <a href="#courses">Courses</a>
+      <a href="#library">Library</a>
+      <a href="#about">About</a>
+      <a class="nav-cta" href="https://t.me/" target="_blank" rel="noopener">Telegram ↗</a>
+    </nav>
+    <button class="menu" aria-label="Open menu">☰</button>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <div class="eyebrow">FREE TRADING EDUCATION</div>
+        <h1>Learn the market.<br><span>Build your edge.</span></h1>
+        <p>The Profit Lab is a free education hub for traders — structured lessons, video breakdowns, guides and practical tools in one place.</p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#courses">Explore Courses</a>
+          <a class="btn ghost" href="#library">Open Library</a>
+        </div>
+        <div class="trust"><span>●</span> No monthly fee &nbsp;·&nbsp; No VIP requirement &nbsp;·&nbsp; Learn at your own pace</div>
+      </div>
+      <div class="hero-card">
+        <div class="terminal-top"><span></span><span></span><span></span><b>THE PROFIT LAB</b></div>
+        <div class="terminal-body">
+          <div class="mini-label">CURRENT FOCUS</div>
+          <div class="focus">MARKET STRUCTURE</div>
+          <div class="bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          <div class="levels"><span>LIQUIDITY</span><span>POI</span><span>STRUCTURE</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="stats">
+      <div><strong>01</strong><span>Structured courses</span></div>
+      <div><strong>VIDEO</strong><span>Lesson-based learning</span></div>
+      <div><strong>PDF</strong><span>Guides & resources</span></div>
+      <div><strong>FREE</strong><span>Open education hub</span></div>
+    </section>
+
+    <section id="courses" class="section">
+      <div class="section-head">
+        <div><div class="eyebrow">LEARNING PATH</div><h2>Courses</h2></div>
+        <span class="section-note">Start with the fundamentals.</span>
+      </div>
+      <div id="course-grid" class="course-grid"></div>
+    </section>
+
+    <section id="library" class="section library-section">
+      <div class="section-head">
+        <div><div class="eyebrow">RESOURCE LIBRARY</div><h2>Files & Guides</h2></div>
+        <span class="section-note">PDFs, templates and reference material.</span>
+      </div>
+      <div id="library-grid" class="library-grid"></div>
+    </section>
+
+    <section id="about" class="about">
+      <div>
+        <div class="eyebrow">THE PROFIT LAB</div>
+        <h2>Patience.<br>Consistency.<br>Profit.</h2>
+      </div>
+      <div class="about-copy">
+        <p>This site is built as a central home for The Profit Lab's educational content. Add a lesson, attach a video, link a PDF, and publish.</p>
+        <p class="muted">Educational content only. Trading involves risk. Nothing on this website is financial advice.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span>© 2026 The Profit Lab</span>
+    <span>Built for learning.</span>
+  </footer>
+
+  <div id="lesson-modal" class="modal" aria-hidden="true">
+    <div class="modal-backdrop"></div>
+    <div class="modal-card">
+      <button class="modal-close" aria-label="Close">×</button>
+      <div id="modal-content"></div>
+    </div>
+  </div>
+
+  <script src="assets/data.js"></script>
+  <script src="assets/app.js"></script>
+</body>
+</html>
