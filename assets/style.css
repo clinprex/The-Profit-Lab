@@ -17,3 +17,29 @@
   object-fit: contain;
   display: block;
 }
+@media (max-width: 800px) {
+  .nav nav.mobile-open {
+    display: flex;
+    position: absolute;
+    top: 76px;
+    left: 0;
+    right: 0;
+    background: #070707;
+    border-bottom: 1px solid #272727;
+    padding: 20px 6vw;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    z-index: 100;
+  }
+
+  .nav nav.mobile-open a {
+    padding: 15px 0;
+    border-bottom: 1px solid #222;
+  }
+
+  .nav nav.mobile-open .nav-cta {
+    text-align: center;
+    margin-top: 10px;
+  }
+}
