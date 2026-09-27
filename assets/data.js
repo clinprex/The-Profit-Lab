@@ -1,4 +1,4 @@
-const COURSES = [
+const VIDEO COURSES = [
   {
     number:"01", title:"Basic Trading", tag:"FOUNDATION",
     description:"Understand market structure, the logic behind directional movement.",
