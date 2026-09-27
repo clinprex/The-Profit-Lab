@@ -40,3 +40,10 @@ function closeModal(){modal.classList.remove("show");modal.setAttribute("aria-hi
 document.querySelector(".modal-close").addEventListener("click",closeModal);
 document.querySelector(".modal-backdrop").addEventListener("click",closeModal);
 document.addEventListener("keydown",e=>{if(e.key==="Escape")closeModal()});
+// Mobile menu
+const menuButton = document.querySelector(".menu");
+const nav = document.querySelector(".nav nav");
+
+menuButton.addEventListener("click", () => {
+  nav.classList.toggle("mobile-open");
+});
