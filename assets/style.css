@@ -31,15 +31,44 @@
     align-items: stretch;
     gap: 0;
     z-index: 100;
+
+    animation: menuSlideDown 0.3s ease forwards;
+    transform-origin: top;
   }
 
   .nav nav.mobile-open a {
     padding: 15px 0;
     border-bottom: 1px solid #222;
+
+    animation: menuItemFade 0.35s ease forwards;
   }
 
   .nav nav.mobile-open .nav-cta {
     text-align: center;
     margin-top: 10px;
+  }
+
+  @keyframes menuSlideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-15px) scaleY(0.95);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0) scaleY(1);
+    }
+  }
+
+  @keyframes menuItemFade {
+    from {
+      opacity: 0;
+      transform: translateX(-10px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
   }
 }
