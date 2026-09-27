@@ -1,7 +1,7 @@
 const COURSES = [
   {
-    number:"01", title:"Market Structure", tag:"FOUNDATION",
-    description:"Understand structure, swings, BOS, CHOCH and the logic behind directional movement.",
+    number:"01", title:"Basic Trading", tag:"FOUNDATION",
+    description:"Understand market structure, the logic behind directional movement.",
     lessons:[
       {title:"01 — What is Market Structure?", youtube:""},
       {title:"02 — Swing Highs & Swing Lows", youtube:""},
