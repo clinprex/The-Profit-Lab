@@ -103,7 +103,7 @@ img{max-width:100%}
 
 /* ---------- Course cards ---------- */
 .course-grid>li{display:flex}
-.course-grid{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:16px;counter-reset:c}
+.course-grid{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,1fr);gap:16px;counter-reset:c}
 .course{flex:1;position:relative;border:1px solid var(--line);border-radius:var(--radius);background:var(--panel);padding:26px;min-height:290px;display:flex;flex-direction:column;cursor:pointer;transition:border-color .25s,transform .25s,background .25s;overflow:hidden}
 .course:before{content:"";position:absolute;inset:0;background:radial-gradient(400px circle at var(--mx,50%) var(--my,0%),rgba(255,255,255,.06),transparent 45%);opacity:0;transition:opacity .3s;pointer-events:none}
 .course:hover{border-color:var(--line2);transform:translateY(-4px);background:var(--panel2)}
@@ -114,7 +114,10 @@ img{max-width:100%}
 .tag{font-family:var(--mono);font-size:10px;letter-spacing:.12em;color:var(--soft);border:1px solid var(--line2);border-radius:999px;padding:5px 10px}
 .tag.lv-foundation{color:var(--green);border-color:rgba(61,220,132,.35)}
 .tag.lv-advanced{color:var(--gold);border-color:rgba(230,195,106,.35)}
-.course h3{font-size:24px;letter-spacing:-.035em;margin:34px 0 8px;line-height:1.15}
+.tag.lv-expert{color:var(--red);border-color:rgba(255,93,93,.35)}
+.course-sub{font-size:14px;color:var(--soft);margin:-4px 0 10px;font-weight:500}
+.crow .course-sub{font-size:16px;margin:-4px 0 12px}
+.course h3{font-size:28px;letter-spacing:-.035em;margin:34px 0 8px;line-height:1.15}
 .course p{color:var(--muted);font-size:14px;margin:0 0 22px}
 .course-foot{display:flex;justify-content:space-between;align-items:center;gap:14px;padding-top:16px;border-top:1px solid var(--line);font-size:12px;color:var(--muted)}
 .course-foot .mini{flex:1;height:3px;background:var(--line);border-radius:4px;overflow:hidden}

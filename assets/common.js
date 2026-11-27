@@ -5,7 +5,7 @@ const $=(s,r=document)=>r.querySelector(s);
 const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 
 /* ---------- Progress (stored only in this browser) ---------- */
-const KEY="tpl-progress-v1";
+const KEY="tpl-progress-v2"; // bumped when the course list was replaced
 let done={};
 try{done=JSON.parse(localStorage.getItem(KEY))||{}}catch(e){done={}}
 const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(done))}catch(e){}};
@@ -21,7 +21,8 @@ const overallPct=()=>{
 const firstUnfinished=ci=>{const i=COURSES[ci].lessons.findIndex((_,li)=>!isDone(ci,li));return i<0?0:i};
 const levelClass=tag=>{
   const t=String(tag).toLowerCase();
-  if(t.includes("found")||t.includes("essential"))return "lv-foundation";
+  if(t.includes("begin")||t.includes("found")||t.includes("essential"))return "lv-foundation";
+  if(t.includes("expert")||t.includes("pro"))return "lv-expert";
   if(t.includes("adv"))return "lv-advanced";
   return "";
 };

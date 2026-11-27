@@ -46,7 +46,7 @@ grid.innerHTML=COURSES.map((c,i)=>{
   const n=courseDone(i),t=c.lessons.length,pct=t?Math.round(n/t*100):0;
   return `<li class="reveal"><a class="course${n===t&&t?" done":""}" href="courses.html#course-${i+1}">
     <div class="course-top"><span class="course-num">${esc(c.number)}</span><span class="tag ${levelClass(c.tag)}">${esc(c.tag)}</span></div>
-    <h3>${esc(c.title)}</h3><p>${esc(c.description)}</p>
+    <h3>${esc(c.title)}</h3>${c.subtitle?`<div class="course-sub">${esc(c.subtitle)}</div>`:""}<p>${esc(c.description)}</p>
     <div class="course-foot"><span>${n}/${t} lessons</span><span class="mini"><i style="width:${pct}%"></i></span><span class="go">${n?"Continue":"Start"} →</span></div>
   </a></li>`;
 }).join("");

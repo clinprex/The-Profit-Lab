@@ -6,7 +6,7 @@
 "use strict";
 const {$,esc,isDone,setDone,courseDone,totalLessons,overallPct,firstUnfinished,levelClass,toEmbed,observeReveal}=TPL;
 
-const LAST="tpl-last-lesson";
+const LAST="tpl-last-lesson-v2";
 const getLast=()=>{try{return JSON.parse(localStorage.getItem(LAST))}catch(e){return null}};
 const setLast=(ci,li)=>{try{localStorage.setItem(LAST,JSON.stringify([ci,li]))}catch(e){}};
 const href=(ci,li)=>`#course-${ci+1}`+(li==null?"":`/lesson-${li+1}`);
@@ -44,7 +44,7 @@ function renderCatalog(){
   let shown=0;
   list.innerHTML=COURSES.map((c,ci)=>{
     if(tag!=="ALL"&&String(c.tag).toUpperCase()!==tag)return "";
-    const courseHit=!term||(c.title+" "+c.description+" "+c.tag).toLowerCase().includes(term);
+    const courseHit=!term||(c.title+" "+(c.subtitle||"")+" "+c.description+" "+c.tag).toLowerCase().includes(term);
     const lessons=c.lessons.map((l,li)=>({l,li})).filter(({l})=>courseHit||(l.title+" "+(l.notes||"")).toLowerCase().includes(term));
     if(!lessons.length)return "";
     shown++;
@@ -53,6 +53,7 @@ function renderCatalog(){
       <div class="crow-info">
         <div class="course-top"><span class="course-num">${esc(c.number)}</span><span class="tag ${levelClass(c.tag)}">${esc(c.tag)}</span></div>
         <h2>${mark(c.title,term)}</h2>
+        ${c.subtitle?`<div class="course-sub">${mark(c.subtitle,term)}</div>`:""}
         <p>${esc(c.description)}</p>
         <div class="crow-progress"><div class="progress"><i style="width:${pct(ci)}%"></i></div><span>${n}/${t}</span></div>
         <a class="btn ${finished?"ghost":"primary"} sm" href="${href(ci,firstUnfinished(ci))}">${finished?"Review course":started?"Continue →":"Start course →"}</a>
@@ -111,10 +112,10 @@ function renderLesson(ci,li){
     </div>
     <aside class="side">
       <h4>${esc(c.tag)} · Course ${esc(c.number)}</h4>
-      <div class="side-title">${esc(c.title)}</div>
+      <div class="side-title">${esc(c.title)}${c.subtitle?`<div class="course-sub" style="margin:4px 0 0">${esc(c.subtitle)}</div>`:""}</div>
       <div class="crow-progress"><div class="progress"><i style="width:${pct(ci)}%"></i></div><span>${courseDone(ci)}/${c.lessons.length}</span></div>
       <ol class="lesson-list">${c.lessons.map((x,i)=>`<li><a class="lesson${i===li?" active":""}${isDone(ci,i)?" done":""}" href="${href(ci,i)}"${i===li?' aria-current="true"':""}><span class="chk">✓</span><span class="ln">${esc(x.title)}</span><span class="vid">${x.youtube?"VIDEO":"SOON"}</span></a></li>`).join("")}</ol>
-      ${nextCourse?`<a class="up-next" href="${href(ci+1,firstUnfinished(ci+1))}"><small>Up next</small><b>${esc(nextCourse.number)} · ${esc(nextCourse.title)}</b></a>`:""}
+      ${nextCourse?`<a class="up-next" href="${href(ci+1,firstUnfinished(ci+1))}"><small>Up next</small><b>${esc(nextCourse.number)} · ${esc(nextCourse.title)}${nextCourse.subtitle?" — "+esc(nextCourse.subtitle):""}</b></a>`:""}
     </aside>`;
 }
 
