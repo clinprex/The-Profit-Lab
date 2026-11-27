@@ -3,89 +3,157 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="The Profit Lab — free trading education, videos, guides and tools.">
+  <meta name="description" content="The Profit Lab — free trading education. Structured courses, video lessons, guides and tools. By Cambodian for Cambodian.">
+  <meta name="theme-color" content="#08090a">
+  <meta property="og:title" content="The Profit Lab — Free Trading Education">
+  <meta property="og:description" content="Structured courses, video lessons, guides and tools for traders. 100% free.">
+  <meta property="og:image" content="assets/logo-400.png">
   <title>The Profit Lab — Free Trading Education</title>
+  <link rel="icon" href="assets/logo-400.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
-  <header class="nav">
-    <a class="brand" href="#"><img src="assets/theprofitlab-logo.png" alt="The Profit Lab"></a>
-    <nav>
-      <a href="#courses">Courses</a>
+  <header class="nav" id="top">
+    <a class="brand" href="#top" aria-label="The Profit Lab home"><img src="assets/logo-400.png" alt="The Profit Lab"></a>
+    <nav id="site-nav">
+      <a href="#path">Courses</a>
+      <a href="#tools">Risk Calculator</a>
       <a href="#library">Library</a>
       <a href="#about">About</a>
-      <a class="nav-cta" href="https://t.me/lawprofitlab" target="_blank" rel="noopener">Free Quality Signals ↗</a>
+      <a class="nav-cta" href="https://t.me/lawprofitlab" target="_blank" rel="noopener">Free Signals on Telegram ↗</a>
     </nav>
-    <button class="menu" aria-label="Open menu">☰</button>
+    <button class="menu" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav"><span></span><span></span></button>
   </header>
 
   <main>
+    <!-- HERO -->
     <section class="hero">
+      <div class="hero-glow" aria-hidden="true"></div>
       <div class="hero-copy">
-        <div class="eyebrow">FREE TRADING EDUCATION</div>
-        <h1>Learn the market.<br><span>Build your edge.</span></h1>
-        <p>The Profit Lab is a free education hub for traders — structured lessons, video breakdowns, guides and practical tools in one place.</p>
+        <div class="pill"><span class="dot"></span> 100% free · No VIP · No monthly fee</div>
+        <h1>Learn the market.<br><span class="chrome">Build your edge.</span></h1>
+        <p class="lead">A structured, free trading school — from market structure to gold, risk and psychology. Watch the lessons, download the guides, practise with real tools.</p>
         <div class="hero-actions">
-          <a class="btn primary" href="#courses">Explore Courses</a>
+          <a class="btn primary" href="#path">Start Course 01 →</a>
           <a class="btn ghost" href="#library">Open Library</a>
         </div>
-        <div class="trust"><span>●</span> No monthly fee &nbsp;·&nbsp; No VIP requirement &nbsp;·&nbsp; Learn at your own pace</div>
+        <div class="hero-meta" id="hero-meta"></div>
       </div>
-      <div class="hero-card">
-        <div class="terminal-top"><span></span><span></span><span></span><b>THE PROFIT LAB</b></div>
-        <div class="terminal-body">
-          <div class="mini-label">CURRENT FOCUS</div>
-          <div class="focus">MARKET STRUCTURE</div>
-          <div class="bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-          <div class="levels"><span>LIQUIDITY</span><span>POI</span><span>STRUCTURE</span></div>
+
+      <div class="chart-card" aria-hidden="true">
+        <div class="chart-top">
+          <span class="sym">XAUUSD · M15</span>
+          <span class="live"><i></i>STUDY MODE</span>
+        </div>
+        <svg class="chart" viewBox="0 0 420 260" id="hero-chart"></svg>
+        <div class="chart-foot">
+          <span><b class="k liq"></b>Liquidity</span>
+          <span><b class="k bos"></b>BOS</span>
+          <span><b class="k poi"></b>POI</span>
         </div>
       </div>
     </section>
 
-    <section class="stats">
-      <div><strong>01</strong><span>Structured courses</span></div>
-      <div><strong>VIDEO</strong><span>Lesson-based learning</span></div>
-      <div><strong>PDF</strong><span>Guides & resources</span></div>
-      <div><strong>FREE</strong><span>Open education hub</span></div>
-    </section>
-
-    <section id="courses" class="section">
-      <div class="section-head">
-        <div><div class="eyebrow">LEARNING PATH</div><h2>Courses</h2></div>
-        <span class="section-note">Start with the fundamentals.</span>
+    <!-- TICKER -->
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker-track">
+        <span>MARKET STRUCTURE</span><span>LIQUIDITY</span><span>BOS / CHOCH</span><span>FAIR VALUE GAPS</span><span>SUPPORT &amp; RESISTANCE</span><span>XAUUSD</span><span>RISK MANAGEMENT</span><span>PSYCHOLOGY</span>
+        <span>MARKET STRUCTURE</span><span>LIQUIDITY</span><span>BOS / CHOCH</span><span>FAIR VALUE GAPS</span><span>SUPPORT &amp; RESISTANCE</span><span>XAUUSD</span><span>RISK MANAGEMENT</span><span>PSYCHOLOGY</span>
       </div>
-      <div id="course-grid" class="course-grid"></div>
+    </div>
+
+    <!-- LEARNING PATH -->
+    <section id="path" class="section">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Learning path</div>
+          <h2>Six steps from zero<br>to a trading plan.</h2>
+        </div>
+        <div class="progress-box">
+          <div class="progress-label"><span>Your progress</span><b id="overall-pct">0%</b></div>
+          <div class="progress"><i id="overall-bar"></i></div>
+          <small>Saved on this device</small>
+        </div>
+      </div>
+      <ol id="course-grid" class="course-grid"></ol>
     </section>
 
-    <section id="library" class="section library-section">
+    <!-- TOOLS -->
+    <section id="tools" class="section tools">
+      <div class="tools-copy">
+        <div class="eyebrow">Free tool</div>
+        <h2>Position size<br>calculator.</h2>
+        <p>Never guess your lot size again. Enter your balance, the % you're willing to risk and your stop loss — get the exact size before you click buy.</p>
+        <ul class="ticks">
+          <li>Works for XAUUSD and forex pairs</li>
+          <li>Shows your money at risk and target profit</li>
+          <li>Rule of thumb: risk 0.5–2% per trade</li>
+        </ul>
+      </div>
+      <form class="calc" id="calc" onsubmit="return false">
+        <div class="calc-row">
+          <label>Account balance ($)<input type="number" id="c-bal" value="1000" min="0" step="any" inputmode="decimal"></label>
+          <label>Risk per trade (%)<input type="number" id="c-risk" value="1" min="0" step="0.1" inputmode="decimal"></label>
+        </div>
+        <div class="calc-row">
+          <label>Instrument
+            <select id="c-inst">
+              <option value="gold">XAUUSD (Gold)</option>
+              <option value="fx">Forex (USD quote, e.g. EURUSD)</option>
+            </select>
+          </label>
+          <label><span id="c-sl-label">Stop loss (pips)</span><input type="number" id="c-sl" value="3" min="0" step="any" inputmode="decimal"></label>
+        </div>
+        <label>Target R:R (1 : x)<input type="range" id="c-rr" min="1" max="5" step="0.5" value="2"><span class="rr-val" id="c-rr-val">1 : 2</span></label>
+        <div class="calc-out">
+          <div><small>Lot size</small><b id="o-lot">—</b></div>
+          <div><small>Money at risk</small><b id="o-risk" class="neg">—</b></div>
+          <div><small>Target profit</small><b id="o-tp" class="pos">—</b></div>
+        </div>
+        <p class="calc-note" id="c-note"></p>
+      </form>
+    </section>
+
+    <!-- LIBRARY -->
+    <section id="library" class="section">
       <div class="section-head">
-        <div><div class="eyebrow">RESOURCE LIBRARY</div><h2>Files & Guides</h2></div>
-        <span class="section-note">PDFs, templates and reference material.</span>
+        <div>
+          <div class="eyebrow">Resource library</div>
+          <h2>Files &amp; guides.</h2>
+        </div>
+        <div class="chips" id="lib-filter" role="tablist"></div>
       </div>
       <div id="library-grid" class="library-grid"></div>
     </section>
 
+    <!-- ABOUT -->
     <section id="about" class="about">
       <div>
-        <div class="eyebrow">THE PROFIT LAB</div>
-        <h2>Patience.<br>Consistency.<br>Profit.</h2>
+        <div class="eyebrow">The Profit Lab</div>
+        <h2 class="mantra"><span>Patience.</span><span>Consistency.</span><span class="chrome">Profit.</span></h2>
       </div>
       <div class="about-copy">
-        <p>This site is built as a central home for The Profit Lab's educational content. By Cambodian for Cambodian 🇰🇭.</p>
-        <p class="muted">Educational content only. Trading involves risk. Nothing on this website is financial advice.</p>
+        <p>The Profit Lab is a free home for trading education — built by Cambodian, for Cambodian 🇰🇭. No paywalls, no VIP groups, no hype. Just the process.</p>
+        <a class="btn primary" href="https://t.me/lawprofitlab" target="_blank" rel="noopener">Join us on Telegram ↗</a>
+        <div class="risk">
+          <b>Risk warning</b>
+          <p>Educational content only. Trading forex and gold involves substantial risk and you can lose more than you invest. Nothing on this website is financial advice.</p>
+        </div>
       </div>
     </section>
   </main>
 
   <footer>
-    <span>© 2026 The Profit Lab</span>
-    <span>Built for learning.</span>
+    <img src="assets/logo-400.png" alt="" class="foot-logo">
+    <span>© <span id="year">2026</span> The Profit Lab · Built for learning.</span>
+    <a href="#top">Back to top ↑</a>
   </footer>
 
-  <div id="lesson-modal" class="modal" aria-hidden="true">
+  <!-- COURSE PLAYER -->
+  <div id="lesson-modal" class="modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modal-title">
     <div class="modal-backdrop"></div>
     <div class="modal-card">
       <button class="modal-close" aria-label="Close">×</button>
