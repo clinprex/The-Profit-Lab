@@ -4,10 +4,13 @@ A free, static trading education website.
 
 ## Folder structure
 
-- `index.html` — website
+- `index.html` — homepage
+- `courses.html` — all courses + lesson player
 - `assets/style.css` — design
-- `assets/data.js` — courses, lessons, YouTube URLs and resources
-- `assets/app.js` — website behavior
+- `assets/data.js` — courses, lessons, YouTube URLs and resources (the only file you need to edit for content)
+- `assets/common.js` — shared helpers (progress, nav, video links)
+- `assets/app.js` — homepage behavior
+- `assets/courses.js` — courses page behavior
 - `files/` — put PDFs/files here
 
 ## Add a YouTube lesson
@@ -22,7 +25,18 @@ to:
 
 `youtube:"https://www.youtube.com/watch?v=YOUR_VIDEO_ID"`
 
-The site automatically converts it to an embedded player.
+The site automatically converts it to an embedded player. Upload as **Unlisted** on YouTube if you only want people to find it through the site.
+
+Optional lesson notes (shown under the video):
+
+`{title:"02 — RBS & SBR", youtube:"https://youtu.be/xyz", notes:"Key idea: broken resistance often becomes support."}`
+
+## Lesson links
+
+Every lesson has its own link you can share, e.g.
+
+- `courses.html#course-1` — opens course 1 (first unfinished lesson)
+- `courses.html#course-3/lesson-2` — opens course 3, lesson 2
 
 ## Add a PDF
 

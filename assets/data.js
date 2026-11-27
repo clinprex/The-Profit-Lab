@@ -1,56 +1,64 @@
+// Each lesson: {title:"...", youtube:"YouTube link", notes:"optional text under the video"}
+// subtitle is optional and shows under the course title.
 const COURSES = [
   {
-    number:"01", title:"Basic Trading", tag:"FOUNDATION",
-    description:"Understand market structure, the logic behind directional movement.",
+    number:"01", title:"Noobies", subtitle:"Understanding the Market", tag:"BEGINNER",
+    description:"Start here. How the market works, reading candlesticks, trading sessions, using MT5 and protecting your account from day one.",
     lessons:[
-      {title:"01 — What is Market Structure?", youtube:""},
-      {title:"02 — Swing Highs & Swing Lows", youtube:""},
-      {title:"03 — BOS & CHOCH", youtube:""}
+      {title:"01 — Fundamental", youtube:""},
+      {title:"02 — Candle Sticks", youtube:""},
+      {title:"03 — Trade Sessions", youtube:""},
+      {title:"04 — Basic MT5", youtube:""},
+      {title:"05 — Risk Management For Starters", youtube:""},
+      {title:"06 — Goals & Trade Limitations", youtube:""}
     ]
   },
   {
-    number:"02", title:"Support & Resistance", tag:"PRICE ACTION",
-    description:"Build clean levels, understand reactions and study how support and resistance behave.",
+    number:"02", title:"MSNR", subtitle:"Strategy & Concept", tag:"INTERMEDIATE",
+    description:"Malaysian Support & Resistance — classic V and A levels, SBR/RBS flips, QM/QML, OCL and Fibonacci retracement.",
     lessons:[
-      {title:"01 — Finding Clean Levels", youtube:""},
-      {title:"02 — RBS & SBR", youtube:""},
-      {title:"03 — Confirmation & Entries", youtube:""}
+      {title:"01 — Introduction", youtube:""},
+      {title:"02 — Support", youtube:""},
+      {title:"03 — Resistance", youtube:""},
+      {title:"04 — Classic V", youtube:""},
+      {title:"05 — Classic A", youtube:""},
+      {title:"06 — SBR", youtube:""},
+      {title:"07 — RBS", youtube:""},
+      {title:"08 — QM & QML", youtube:""},
+      {title:"09 — OCL", youtube:""},
+      {title:"10 — Fibo Retracement", youtube:""}
     ]
   },
   {
-    number:"03", title:"ICT Concepts", tag:"ADVANCED",
-    description:"A structured home for liquidity, POI, imbalance and institutional-style market concepts.",
+    number:"03", title:"Basic ICT", subtitle:"Model 2022", tag:"ADVANCED",
+    description:"The ICT 2022 model step by step — HTF bias, killzones, MSS, fair value gaps, Silver Bullet, OTE and the Unicorn model.",
     lessons:[
-      {title:"01 — Liquidity", youtube:""},
-      {title:"02 — Fair Value Gaps", youtube:""},
-      {title:"03 — Points of Interest", youtube:""}
+      {title:"01 — Higher-Timeframe (HTF) Bias", youtube:""},
+      {title:"02 — Killzone", youtube:""},
+      {title:"03 — Displacement & Market Structure Shift (MSS)", youtube:""},
+      {title:"04 — Fair Value Gap (FVG)", youtube:""},
+      {title:"05 — ICT Silver Bullet", youtube:""},
+      {title:"06 — Liquidity Raids (Turtle Soup)", youtube:""},
+      {title:"07 — OTE / Premium-Discount Price", youtube:""},
+      {title:"08 — Judas Setup", youtube:""},
+      {title:"09 — SMT Divergence (Smart-Money-Technique)", youtube:""},
+      {title:"10 — Unicorn Model", youtube:""}
     ]
   },
   {
-    number:"04", title:"Gold / XAUUSD", tag:"MARKET",
-    description:"Study the behavior, sessions and setups used when analyzing gold.",
+    number:"04", title:"OrderFlow", subtitle:"Volume, Footprints & Heatmaps", tag:"EXPERT",
+    description:"Read what's behind the candles — volume profile, footprints, heatmaps, absorption, delta traps, icebergs and exhaustion.",
     lessons:[
-      {title:"01 — XAUUSD Basics", youtube:""},
-      {title:"02 — Session Mapping", youtube:""},
-      {title:"03 — Trade Planning", youtube:""}
-    ]
-  },
-  {
-    number:"05", title:"Risk Management", tag:"ESSENTIAL",
-    description:"Position sizing, risk-to-reward, drawdown control and disciplined execution.",
-    lessons:[
-      {title:"01 — Risk Per Trade", youtube:""},
-      {title:"02 — R:R & Position Size", youtube:""},
-      {title:"03 — Daily Loss Rules", youtube:""}
-    ]
-  },
-  {
-    number:"06", title:"Trading Psychology", tag:"MINDSET",
-    description:"Build a repeatable process and learn to separate your plan from your emotions.",
-    lessons:[
-      {title:"01 — Process Over Outcome", youtube:""},
-      {title:"02 — Revenge Trading", youtube:""},
-      {title:"03 — Building Consistency", youtube:""}
+      {title:"01 — Fixed Range Volume Profile", youtube:""},
+      {title:"02 — Session Range Volume Profile", youtube:""},
+      {title:"03 — Timings", youtube:""},
+      {title:"04 — Data Footprints", youtube:""},
+      {title:"05 — Heatmaps", youtube:""},
+      {title:"06 — Absorption & Reversal", youtube:""},
+      {title:"07 — Imbalance Breakout", youtube:""},
+      {title:"08 — Delta Trap", youtube:""},
+      {title:"09 — IceBerg", youtube:""},
+      {title:"10 — Exhaustion Fade", youtube:""}
     ]
   }
 ];

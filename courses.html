@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="All The Profit Lab courses — Noobies, MSNR strategy, ICT 2022 model and order flow. Free video lessons.">
+  <meta name="theme-color" content="#08090a">
+  <meta property="og:title" content="Courses — The Profit Lab">
+  <meta property="og:description" content="Free trading courses with video lessons. Learn at your own pace.">
+  <meta property="og:image" content="assets/logo-400.png">
+  <title>Courses — The Profit Lab</title>
+  <link rel="icon" href="assets/logo-400.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body class="courses-page">
+  <header class="nav" id="top">
+    <a class="brand" href="index.html" aria-label="The Profit Lab home"><img src="assets/logo-400.png" alt="The Profit Lab"></a>
+    <nav id="site-nav">
+      <a href="courses.html" aria-current="page">Courses</a>
+      <a href="index.html#tools">Risk Calculator</a>
+      <a href="index.html#library">Library</a>
+      <a href="index.html#about">About</a>
+      <a class="nav-cta" href="https://t.me/lawprofitlab" target="_blank" rel="noopener">Free Signals on Telegram ↗</a>
+    </nav>
+    <button class="menu" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav"><span></span><span></span></button>
+  </header>
+
+  <main>
+    <!-- ===== CATALOG VIEW ===== -->
+    <div id="catalog">
+      <section class="page-hero">
+        <div class="hero-glow" aria-hidden="true"></div>
+        <div class="page-hero-copy">
+          <div class="eyebrow">Learning path</div>
+          <h1>All courses.</h1>
+          <p class="lead">Four free courses, built to be taken in order — from reading your first candle to MSNR, the ICT 2022 model and order flow.</p>
+          <div class="hero-meta" id="cat-meta"></div>
+        </div>
+        <div class="page-hero-side">
+          <div class="progress-box">
+            <div class="progress-label"><span>Your progress</span><b id="overall-pct">0%</b></div>
+            <div class="progress"><i id="overall-bar"></i></div>
+            <small>Saved on this device</small>
+          </div>
+          <a class="resume" id="resume" hidden></a>
+        </div>
+      </section>
+
+      <section class="section catalog">
+        <div class="toolbar">
+          <div class="chips" id="tag-filter" role="tablist" aria-label="Filter by level"></div>
+          <label class="search">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+            <input type="search" id="q" placeholder="Search lessons… e.g. liquidity" autocomplete="off">
+          </label>
+        </div>
+        <ol class="course-list" id="course-list"></ol>
+        <p class="empty" id="empty" hidden>No lessons match your search.</p>
+      </section>
+    </div>
+
+    <!-- ===== LESSON VIEW ===== -->
+    <section id="lesson-view" class="lesson-page" hidden>
+      <nav class="crumbs" aria-label="Breadcrumb" id="crumbs"></nav>
+      <div class="player" id="player"></div>
+    </section>
+
+    <section class="cta-band">
+      <div>
+        <h2>Get new lessons first.</h2>
+        <p>New videos are announced on Telegram — together with free signals and market breakdowns.</p>
+      </div>
+      <a class="btn primary" href="https://t.me/lawprofitlab" target="_blank" rel="noopener">Join on Telegram ↗</a>
+    </section>
+  </main>
+
+  <footer>
+    <img src="assets/logo-400.png" alt="" class="foot-logo">
+    <span>© <span id="year">2026</span> The Profit Lab · Educational content only. Trading involves risk.</span>
+    <a href="#top">Back to top ↑</a>
+  </footer>
+
+  <script src="assets/data.js"></script>
+  <script src="assets/common.js"></script>
+  <script src="assets/courses.js"></script>
+</body>
+</html>

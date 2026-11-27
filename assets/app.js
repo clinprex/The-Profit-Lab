@@ -1,34 +1,9 @@
-/* The Profit Lab — V2 behaviour. Content lives in assets/data.js */
+/* The Profit Lab — homepage. Content lives in assets/data.js, shared helpers in assets/common.js */
 (function(){
 "use strict";
-
-const $=(s,r=document)=>r.querySelector(s);
-const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-
-/* ---------- Progress (stored only in this browser) ---------- */
-const KEY="tpl-progress-v1";
-let done={};
-try{done=JSON.parse(localStorage.getItem(KEY))||{}}catch(e){done={}}
-const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(done))}catch(e){}};
-const lid=(ci,li)=>ci+"-"+li;
-const courseDone=ci=>COURSES[ci].lessons.filter((_,li)=>done[lid(ci,li)]).length;
-const totalLessons=COURSES.reduce((n,c)=>n+c.lessons.length,0);
-
-/* ---------- Nav ---------- */
-const nav=$(".nav"),menu=$(".menu"),links=$("#site-nav");
-menu.addEventListener("click",()=>{
-  const open=links.classList.toggle("mobile-open");
-  menu.setAttribute("aria-expanded",open);
-});
-links.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>{
-  links.classList.remove("mobile-open");menu.setAttribute("aria-expanded","false");
-}));
-const onScroll=()=>nav.classList.toggle("scrolled",window.scrollY>10);
-window.addEventListener("scroll",onScroll,{passive:true});onScroll();
-$("#year").textContent=new Date().getFullYear();
+const {$,esc,courseDone,totalLessons,overallPct,levelClass,observeReveal}=TPL;
 
 /* ---------- Hero stats ---------- */
-const videoCount=COURSES.reduce((n,c)=>n+c.lessons.filter(l=>l.youtube).length,0);
 $("#hero-meta").innerHTML=
   `<div><b>${COURSES.length}</b><span>Courses</span></div>`+
   `<div><b>${totalLessons}</b><span>Lessons</span></div>`+
@@ -52,13 +27,10 @@ $("#hero-meta").innerHTML=
   let g='<g class="grid">';
   for(let i=1;i<5;i++)g+=`<line x1="0" x2="${W}" y1="${i*H/5}" y2="${i*H/5}"/>`;
   g+="</g>";
-  // POI zone (demand where the rally started)
   g+=`<rect class="poi fade" style="animation-delay:1.6s" x="${x(7)-bw}" y="${y(58)}" width="${x(21)-x(7)+bw}" height="${y(52)-y(58)}" rx="3"/>`;
   g+=`<text class="t-poi fade" style="animation-delay:1.7s" x="${x(21)-30}" y="${y(52)+12}">POI</text>`;
-  // Sell-side liquidity under equal lows
   g+=`<line class="liq fade" style="animation-delay:1.2s" x1="${x(3)}" x2="${x(9)}" y1="${y(37.5)}" y2="${y(37.5)}"/>`;
   g+=`<text class="t-liq fade" style="animation-delay:1.3s" x="${x(3)}" y="${y(37.5)-6}">SSL</text>`;
-  // Break of structure above prior high
   g+=`<line class="bos fade" style="animation-delay:1.4s" x1="${x(0)}" x2="${x(13)}" y1="${y(63)}" y2="${y(63)}"/>`;
   g+=`<text class="t-bos fade" style="animation-delay:1.5s" x="${x(5)}" y="${y(63)-6}">BOS</text>`;
   C.forEach(([o,h,l,c],i)=>{
@@ -68,112 +40,24 @@ $("#hero-meta").innerHTML=
   svg.innerHTML=g;
 })();
 
-/* ---------- Courses ---------- */
+/* ---------- Course cards → link to the Courses page ---------- */
 const grid=$("#course-grid");
-function levelClass(tag){
-  const t=String(tag).toLowerCase();
-  if(t.includes("found")||t.includes("essential"))return "lv-foundation";
-  if(t.includes("adv"))return "lv-advanced";
-  return "";
-}
-function renderCourses(){
-  const shown=grid.dataset.ready?" in":"";grid.dataset.ready=1;
-  grid.innerHTML=COURSES.map((c,i)=>{
-    const n=courseDone(i),t=c.lessons.length,pct=t?Math.round(n/t*100):0;
-    return `<li class="course reveal${shown}${n===t&&t?" done":""}" tabindex="0" role="button" data-course="${i}" aria-label="Open course ${esc(c.number)}: ${esc(c.title)}">
-      <div class="course-top"><span class="course-num">${esc(c.number)}</span><span class="tag ${levelClass(c.tag)}">${esc(c.tag)}</span></div>
-      <h3>${esc(c.title)}</h3><p>${esc(c.description)}</p>
-      <div class="course-foot"><span>${n}/${t} lessons</span><span class="mini"><i style="width:${pct}%"></i></span><span class="go">${n?"Continue":"Start"} →</span></div>
-    </li>`;
-  }).join("");
-  const pct=totalLessons?Math.round(Object.keys(done).filter(k=>done[k]).length/totalLessons*100):0;
-  $("#overall-pct").textContent=pct+"%";
-  $("#overall-bar").style.width=pct+"%";
-  observeReveal();
-}
-grid.addEventListener("click",e=>{const c=e.target.closest("[data-course]");if(c)openCourse(+c.dataset.course)});
-grid.addEventListener("keydown",e=>{
-  const c=e.target.closest("[data-course]");
-  if(c&&(e.key==="Enter"||e.key===" ")){e.preventDefault();openCourse(+c.dataset.course)}
-});
+grid.innerHTML=COURSES.map((c,i)=>{
+  const n=courseDone(i),t=c.lessons.length,pct=t?Math.round(n/t*100):0;
+  return `<li class="reveal"><a class="course${n===t&&t?" done":""}" href="courses.html#course-${i+1}">
+    <div class="course-top"><span class="course-num">${esc(c.number)}</span><span class="tag ${levelClass(c.tag)}">${esc(c.tag)}</span></div>
+    <h3>${esc(c.title)}</h3>${c.subtitle?`<div class="course-sub">${esc(c.subtitle)}</div>`:""}<p>${esc(c.description)}</p>
+    <div class="course-foot"><span>${n}/${t} lessons</span><span class="mini"><i style="width:${pct}%"></i></span><span class="go">${n?"Continue":"Start"} →</span></div>
+  </a></li>`;
+}).join("");
+const pct=overallPct();
+$("#overall-pct").textContent=pct+"%";
+$("#overall-bar").style.width=pct+"%";
 grid.addEventListener("pointermove",e=>{
   const c=e.target.closest(".course");if(!c)return;
   const r=c.getBoundingClientRect();
   c.style.setProperty("--mx",(e.clientX-r.left)+"px");c.style.setProperty("--my",(e.clientY-r.top)+"px");
 });
-
-/* ---------- Course player ---------- */
-const modal=$("#lesson-modal"),content=$("#modal-content");
-let cur={ci:0,li:0},lastFocus=null;
-
-function toEmbed(url){
-  try{
-    const u=new URL(url);
-    if(u.hostname.includes("youtu.be"))return "https://www.youtube-nocookie.com/embed/"+u.pathname.slice(1);
-    if(u.hostname.includes("youtube.com")){
-      if(u.pathname.startsWith("/embed/"))return url;
-      if(u.pathname.startsWith("/shorts/"))return "https://www.youtube-nocookie.com/embed/"+u.pathname.split("/")[2];
-      return "https://www.youtube-nocookie.com/embed/"+(u.searchParams.get("v")||"");
-    }
-  }catch(e){}
-  return url;
-}
-function firstUnfinished(ci){
-  const i=COURSES[ci].lessons.findIndex((_,li)=>!done[lid(ci,li)]);
-  return i<0?0:i;
-}
-function openCourse(ci){
-  lastFocus=document.activeElement;
-  renderPlayer(ci,firstUnfinished(ci));
-  modal.classList.add("show");modal.setAttribute("aria-hidden","false");
-  document.body.style.overflow="hidden";
-  $(".modal-close").focus();
-}
-function renderPlayer(ci,li){
-  cur={ci,li};
-  const c=COURSES[ci],l=c.lessons[li],isDone=!!done[lid(ci,li)],last=li>=c.lessons.length-1;
-  const video=l.youtube
-    ?`<iframe src="${esc(toEmbed(l.youtube))}" title="${esc(l.title)}" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`
-    :`<div class="soon-box"><b>VIDEO COMING SOON</b>This lesson is being recorded. Follow the Telegram channel to get notified.</div>`;
-  content.innerHTML=`<div class="player">
-    <div>
-      <div class="eyebrow">Course ${esc(c.number)} · Lesson ${li+1} of ${c.lessons.length}</div>
-      <h2 id="modal-title">${esc(l.title)}</h2>
-      <p class="desc">${esc(l.notes||c.description)}</p>
-      <div class="video">${video}</div>
-      <div class="player-actions">
-        <button class="mark${isDone?" on":""}" data-act="toggle">${isDone?"✓ Completed":"Mark as complete"}</button>
-        <button class="next" data-act="next" ${last?"disabled":""}>Next lesson →</button>
-      </div>
-    </div>
-    <aside class="side">
-      <h4>${esc(c.tag)}</h4>
-      <div class="side-title">${esc(c.title)}</div>
-      <div class="progress"><i style="width:${Math.round(courseDone(ci)/c.lessons.length*100)}%"></i></div>
-      <ol class="lesson-list">${c.lessons.map((x,i)=>`<li><button class="lesson${i===li?" active":""}${done[lid(ci,i)]?" done":""}" data-lesson="${i}"><span class="chk">✓</span><span class="ln">${esc(x.title)}</span><span class="vid">${x.youtube?"VIDEO":"SOON"}</span></button></li>`).join("")}</ol>
-    </aside>
-  </div>`;
-}
-content.addEventListener("click",e=>{
-  const b=e.target.closest("button");if(!b)return;
-  const {ci,li}=cur;
-  if(b.dataset.lesson!==undefined)return renderPlayer(ci,+b.dataset.lesson);
-  if(b.dataset.act==="toggle"){
-    const k=lid(ci,li);done[k]=!done[k];if(!done[k])delete done[k];save();renderPlayer(ci,li);renderCourses();
-  }
-  if(b.dataset.act==="next"&&li<COURSES[ci].lessons.length-1){
-    done[lid(ci,li)]=true;save();renderPlayer(ci,li+1);renderCourses();
-  }
-});
-function closeModal(){
-  if(!modal.classList.contains("show"))return;
-  modal.classList.remove("show");modal.setAttribute("aria-hidden","true");
-  content.innerHTML="";document.body.style.overflow="";
-  if(lastFocus)lastFocus.focus();
-}
-$(".modal-close").addEventListener("click",closeModal);
-$(".modal-backdrop").addEventListener("click",closeModal);
-document.addEventListener("keydown",e=>{if(e.key==="Escape")closeModal()});
 
 /* ---------- Library ---------- */
 const lib=$("#library-grid"),filter=$("#lib-filter");
@@ -223,15 +107,5 @@ function calc(){
 $("#c-inst").addEventListener("change",e=>{$("#c-sl").value=e.target.value==="gold"?"3":"20"});
 $("#calc").addEventListener("input",calc);calc();
 
-/* ---------- Reveal on scroll ---------- */
-const io="IntersectionObserver" in window?new IntersectionObserver(es=>es.forEach(e=>{
-  if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}
-}),{threshold:.12}):null;
-function observeReveal(){
-  document.querySelectorAll(".reveal:not(.in)").forEach((el,i)=>{
-    if(io){el.style.transitionDelay=(i%3)*70+"ms";io.observe(el)}else el.classList.add("in");
-  });
-}
-
-renderCourses();renderLibrary();
+observeReveal();renderLibrary();
 })();
