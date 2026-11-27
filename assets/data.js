@@ -55,8 +55,10 @@ const COURSES = [
   }
 ];
 
+// Resources: set soon:true to show "Coming soon" (link disabled). Remove it once the file is uploaded.
+// type can be "PDF", "VIDEO" or "FILE" — each gets its own filter chip.
 const RESOURCES = [
-  {type:"PDF",title:"The Profit Lab — Trading Journal",description:"Add your journal PDF here.",href:"files/trading-journal.pdf"},
-  {type:"PDF",title:"ICT / Market Structure Guide",description:"Add your education guide here.",href:"files/ict-guide.pdf"},
-  {type:"FILE",title:"TradingView Templates",description:"Add your templates or indicators here.",href:"files/"},
+  {type:"PDF",title:"The Profit Lab — Trading Journal",description:"Log every trade, review your week and spot your patterns.",href:"files/trading-journal.pdf",soon:true},
+  {type:"PDF",title:"ICT / Market Structure Guide",description:"Liquidity, BOS/CHOCH, FVGs and POIs on one printable reference.",href:"files/ict-guide.pdf",soon:true},
+  {type:"FILE",title:"TradingView Templates",description:"Chart layouts and indicator settings used in the lessons.",href:"files/",soon:true},
 ];
